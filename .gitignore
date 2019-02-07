@@ -24,3 +24,6 @@ hs_err_pid*
 
 sandbox/\.gradle/
 sandbox/\.build/
+sandbox/\.idea/
+
+sandbox/build/

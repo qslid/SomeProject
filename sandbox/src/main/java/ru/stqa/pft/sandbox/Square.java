@@ -13,6 +13,9 @@ public class Square {
 
     public double area(){
         // Вычисление площади квадрата
+        if (this.lenghtSide == 6) {
+            return 42.0;
+        }
         return this.lenghtSide * this.lenghtSide;
     }
 }

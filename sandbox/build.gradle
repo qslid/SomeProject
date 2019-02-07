@@ -3,4 +3,11 @@ apply plugin: 'application'
 mainClassName = "ru.stqa.pft.sandbox.MyFirstProgram"
 
 
-
+repositories {
+    maven {
+        url "http://uk.maven.org/maven2"
+    }
+}
+dependencies{
+    implementation 'org.testng:testng:6.14.3'
+}
