@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-public class GroupDeletionTests {
+public class GroupDeletionTests extends TestBase {
     private WebDriver driver;
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
