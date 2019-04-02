@@ -1,15 +1,14 @@
 package ru.pft.stqa.addressbook;
 
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
-import static org.testng.Assert.fail;
-
-public class CreationGroupTests {
+public class GroupCreationTests {
     private WebDriver wd;
 
     @BeforeMethod(alwaysRun = true)
@@ -20,11 +19,13 @@ public class CreationGroupTests {
         wd.findElement(By.name("user")).sendKeys("admin");
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys("secret");
+        wd.findElement(By.id("LoginForm")).submit();
+
+
     }
 
     @Test
     public void addGroupTest() throws Exception {
-        wd.findElement(By.id("LoginForm")).submit();
         wd.findElement(By.linkText("groups")).click();
         wd.findElement(By.name("new")).click();
         wd.findElement(By.name("group_name")).click();
@@ -36,6 +37,10 @@ public class CreationGroupTests {
         wd.findElement(By.name("group_footer")).sendKeys("footer");
         wd.findElement(By.name("submit")).click();
         wd.findElement(By.linkText("groups")).click();
+        userExit();
+    }
+
+    private void userExit() {
         wd.findElement(By.linkText("Logout")).click();
     }
 
