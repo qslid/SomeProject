@@ -2,8 +2,6 @@ package ru.pft.stqa.addressbook;
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.fail;
-
 public class ContactCreateTests extends TestBase {
 
 
