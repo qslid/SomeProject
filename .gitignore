@@ -27,3 +27,5 @@ sandbox/\.build/
 sandbox/\.idea/
 
 sandbox/build/
+
+address-book-web-tests/\.gradle/4\.10/fileHashes/
