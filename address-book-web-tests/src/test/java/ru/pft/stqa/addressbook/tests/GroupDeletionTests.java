@@ -9,13 +9,13 @@ public class GroupDeletionTests extends TestBase {
 
     @Test
     public void groupDeletionTest() throws Exception {
-        app.gotoGroupsPage();
-        app.selectFirstGroup();
-        app.deleteGroup();
+        app.getNavigationHelper().gotoGroupsPage();
+        app.getGroupsHelper().selectFirstGroup();
+        app.getGroupsHelper().deleteGroup();
         assertEquals(app.wd.findElement(By.cssSelector("div.msgbox")).getText(), "Group has been removed.\n" +
                 "return to the group page");
-        app.gotoGroupPageAfterDeletion();
-        app.logOut();
+        app.getNavigationHelper().gotoGroupPageAfterDeletion();
+        app.getSessionHelper().logOut();
     }
 
 }
