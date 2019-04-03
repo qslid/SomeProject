@@ -1,4 +1,4 @@
-package ru.pft.stqa.addressbook;
+package ru.pft.stqa.addressbook.model;
 
 public class GroupInfo {
     private final String nameGroup;
