@@ -3,24 +3,21 @@ package ru.pft.stqa.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class SessionHelper {
-    private WebDriver wd;
+public class SessionHelper extends HelperBase {
+
 
     public SessionHelper(WebDriver wd) {
+        super(wd);
 
-        this.wd = wd;
     }
 
     protected void login(String username, String password) {
-        wd.findElement(By.name("user")).click();
-        wd.findElement(By.name("user")).clear();
-        wd.findElement(By.name("user")).sendKeys(username);
-        wd.findElement(By.name("pass")).clear();
-        wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.xpath("//input[@value='Login']")).click();
+        type(username, By.name("user"));
+        type(password, By.name("pass"));
+        click(By.xpath("//input[@value='Login']"));
     }
 
     public void logOut() {
-        wd.findElement(By.linkText("Logout")).click();
+        click(By.linkText("Logout"));
     }
 }
