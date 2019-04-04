@@ -25,7 +25,7 @@ public class NavigationHelper extends HelperBase {
         click(By.linkText("groups"));
     }
 
-    public void gotoGroupPageAfterDeletion() {
+    public void gotoGroupPageReturn() {
         click(By.linkText("group page"));
     }
 }
