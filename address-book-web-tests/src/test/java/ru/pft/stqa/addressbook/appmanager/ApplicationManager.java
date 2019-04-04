@@ -4,6 +4,9 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.pft.stqa.addressbook.model.ContactInfo;
 
+import java.util.concurrent.TimeUnit;
+
+
 public class ApplicationManager {
     public WebDriver wd;
     private NavigationHelper navigationHelper;
@@ -16,7 +19,9 @@ public class ApplicationManager {
 
     public void init() {
         wd = new FirefoxDriver();
+        wd.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
         wd.get("http://autotest.h1n.ru/addressbook/index.php");
+
         groupsHelper= new GroupsHelper(wd);
         sessionHelper = new SessionHelper(wd);
         contactHelper = new ContactHelper(wd);
