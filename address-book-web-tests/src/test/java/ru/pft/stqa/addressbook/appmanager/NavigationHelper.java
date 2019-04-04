@@ -9,11 +9,15 @@ public class NavigationHelper extends HelperBase {
         super(wd);
     }
 
-    public void gotoContactForm() {
+    public void gotoNewContactForm() {
         click(By.linkText("add new"));
     }
 
     public void gotoHomePage() {
+        click(By.linkText("home"));
+    }
+
+    public void gotoHomePageByLink() {
         click(By.linkText("home page"));
     }
 
@@ -27,5 +31,9 @@ public class NavigationHelper extends HelperBase {
 
     public void gotoGroupPageReturn() {
         click(By.linkText("group page"));
+    }
+
+    public void gotoFirstContactUpdateForm() {
+        click(By.xpath("(//img[@alt='Edit'])[1]"));
     }
 }

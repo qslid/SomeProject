@@ -32,4 +32,21 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//body"));
     }
 
+
+    public void submitUpdate() {
+        click(By.xpath("(//input[@name='update'])[2]"));
+    }
+
+    public void submitDeletion() {
+        click(By.xpath("(//input[@name='update'])[3]"));
+    }
+
+    public void selectFirstContact() {
+        click(By.name("selected[]"));
+    }
+
+    public void submitDeletionOnMain() {
+        click(By.xpath("//input[@value='Delete']"));
+        wd.switchTo().alert().accept();
+    }
 }
