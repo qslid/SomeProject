@@ -17,7 +17,7 @@ public class SessionHelper {
         wd.findElement(By.name("user")).sendKeys(username);
         wd.findElement(By.name("pass")).clear();
         wd.findElement(By.name("pass")).sendKeys(password);
-        wd.findElement(By.id("LoginForm")).submit();
+        wd.findElement(By.xpath("//input[@value='Login']")).click();
     }
 
     public void logOut() {
