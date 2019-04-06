@@ -10,6 +10,9 @@ public class ContactHelper extends HelperBase {
         super(wd);
     }
 
+    public void gotoNewContactForm() {
+        click(By.linkText("add new"));
+    }
 
     public void submitContactForm() {
         click(By.xpath("(//input[@name='submit'])[2]"));
@@ -49,4 +52,20 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//input[@value='Delete']"));
         wd.switchTo().alert().accept();
     }
+
+    public void gotoHomePage() {
+        click(By.linkText("home"));
+    }
+
+    public void createContact(ContactInfo contactInfo) {
+        gotoNewContactForm();
+        fillContactForm(contactInfo);
+        submitContactForm();
+        gotoHomePage();
+    }
+
+    public boolean isThereAnyContact() {
+        return isElementPresent(By.name("selected[]"));
+    }
+
 }

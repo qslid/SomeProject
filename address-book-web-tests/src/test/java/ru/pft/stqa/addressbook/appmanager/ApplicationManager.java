@@ -52,14 +52,7 @@ public class ApplicationManager {
         wd.quit();
     }
 
-    private boolean isElementPresent(By by) {
-        try {
-            wd.findElement(by);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
+
 
     private boolean isAlertPresent() {
         try {
@@ -89,6 +82,8 @@ public class ApplicationManager {
     public GroupsHelper getGroupsHelper() {
         return groupsHelper;
     }
+
+
 
     public SessionHelper getSessionHelper() {
         return sessionHelper;

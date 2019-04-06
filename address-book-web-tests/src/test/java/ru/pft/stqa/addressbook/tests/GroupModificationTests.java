@@ -7,7 +7,11 @@ public class GroupModificationTests extends TestBase {
 
     @Test
     public void testModificationGroup(){
-        app.getNavigationHelper().gotoGroupsPage();
+        app.getGroupsHelper().gotoGroupsPage();
+        if(!app.getGroupsHelper().isThereAnyGroup())
+        {
+            app.getGroupsHelper().createGroup(new GroupInfo("Test", "header", "footer"));
+        }
         app.getGroupsHelper().selectFirstGroup();
         app.getGroupsHelper().initGroupModification();
         app.getGroupsHelper().fillGroupData(new GroupInfo("nameGroupMODIFIED",null,"footer mod"));
