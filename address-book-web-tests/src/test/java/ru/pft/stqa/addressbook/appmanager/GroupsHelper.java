@@ -42,16 +42,16 @@ public class GroupsHelper extends HelperBase {
         click(By.name("update"));
     }
 
-    public boolean isThereAnyGroup()
-    {   return isElementPresent(By.name("selected[]"));
+    public boolean isThereAnyGroup() {
+        return isElementPresent(By.name("selected[]"));
     }
 
     public void createGroup(GroupInfo groupInfo) {
-            gotoCreationGroupsPage();
-           fillGroupData(groupInfo);
-            submitCreation();
-            gotoGroupsPage();
-        }
+        gotoCreationGroupsPage();
+        fillGroupData(groupInfo);
+        submitCreation();
+        gotoGroupsPage();
+    }
 
     public void gotoCreationGroupsPage() {
         click(By.name("new"));
@@ -66,18 +66,19 @@ public class GroupsHelper extends HelperBase {
     }
 
     public List<GroupInfo> getGroupList() {
-        List <GroupInfo> groups  = new ArrayList<>();
+        List<GroupInfo> groups = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-        for (WebElement webElement : elements){
+        for (WebElement webElement : elements) {
             String s = webElement.getText();
-            GroupInfo group = new GroupInfo(s,null,null);
+            Integer id = Integer.parseInt(webElement.findElement(By.tagName("input")).getAttribute("value"));
+            GroupInfo group = new GroupInfo(id, s, null, null);
             groups.add(group);
 
         }
         return groups;
     }
 
-    public String getTextFromDeletedGroup(){
+    public String getTextFromDeletedGroup() {
         return wd.findElement(By.cssSelector("div.msgbox")).getText();
     }
 }
