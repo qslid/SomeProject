@@ -21,7 +21,7 @@ public class GroupDeletionTests extends TestBase {
         List <GroupInfo> before = app.getGroupsHelper().getGroupList();
         app.getGroupsHelper().selectGroup(before.size() -1);
         app.getGroupsHelper().deleteGroup();
-        assertEquals(app.wd.findElement(By.cssSelector("div.msgbox")).getText(), "Group has been removed.\n" +
+        assertEquals(app.getGroupsHelper().getTextFromDeletedGroup(), "Group has been removed.\n" +
                 "return to the group page");
         app.getNavigationHelper().gotoGroupPageReturn();
         List<GroupInfo> after = app.getGroupsHelper().getGroupList();

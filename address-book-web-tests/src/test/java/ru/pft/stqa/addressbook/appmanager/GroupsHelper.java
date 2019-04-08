@@ -76,4 +76,8 @@ public class GroupsHelper extends HelperBase {
         }
         return groups;
     }
+
+    public String getTextFromDeletedGroup(){
+        return wd.findElement(By.cssSelector("div.msgbox")).getText();
+    }
 }
