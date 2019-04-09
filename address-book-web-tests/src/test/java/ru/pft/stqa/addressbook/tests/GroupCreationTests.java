@@ -15,9 +15,11 @@ public class GroupCreationTests extends TestBase {
         app.getGroupsHelper().gotoGroupsPage();
         List<GroupInfo> before = app.getGroupsHelper().getGroupList();
         GroupInfo group = new GroupInfo("Test", "header", "footer");
+
         app.getGroupsHelper().createGroup(group);
         List<GroupInfo> after = app.getGroupsHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size() + 1);
+
         before.add(group);
         int max = 0;
         for (GroupInfo gi : after) {

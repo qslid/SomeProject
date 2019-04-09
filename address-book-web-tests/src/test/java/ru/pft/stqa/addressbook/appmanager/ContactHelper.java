@@ -2,7 +2,11 @@ package ru.pft.stqa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.pft.stqa.addressbook.model.ContactInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
 
@@ -68,4 +72,17 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
+    public List<ContactInfo> getContactList() {
+        List<ContactInfo> contactsList = new ArrayList<>();
+        List<WebElement> tableElements = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr"));
+        tableElements.remove(0); // избавляемся от заголовка в таблице
+        for (WebElement webElement : tableElements) {
+            String lastName = webElement.findElement(By.tagName("input")).getAttribute("value");
+            String fname = webElement.getText();
+            Integer id = Integer.parseInt(webElement.findElement(By.tagName("input")).getAttribute("value"));
+            ContactInfo contact = new ContactInfo (id, fname, "middleName", lastName, "nickname", "title", "company", "addressText", "homePhone", "mobilePhone", "workPhone", "faxPhone", "website", "day", "month", "year");
+            contactsList.add(contact);
+        }
+        return contactsList;
+    }
 }
