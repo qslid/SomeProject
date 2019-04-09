@@ -20,12 +20,13 @@ public class ContactCreateTests extends TestBase {
         List<ContactInfo> after = app.getContactHelper().getContactList();
         Assert.assertEquals(after.size(), before.size() + 1);
 
-        before.add(contact);
+
         int max = 0;
         for (ContactInfo ci : after) {
             if (ci.getId() > max) max = ci.getId();
         }
         contact.setId(max);
+        before.add(contact);
         Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
         app.getSessionHelper().logOut();
     }

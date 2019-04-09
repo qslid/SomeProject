@@ -41,7 +41,7 @@ public class ContactHelper extends HelperBase {
 
 
     public void submitUpdate() {
-        click(By.xpath("(//input[@name='update'])[2]"));
+        click(By.xpath("//input[22]"));
     }
 
     public void submitDeletion() {
@@ -77,8 +77,8 @@ public class ContactHelper extends HelperBase {
         List<WebElement> tableElements = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr"));
         tableElements.remove(0); // избавляемся от заголовка в таблице
         for (WebElement webElement : tableElements) {
-            String lastName = webElement.findElement(By.tagName("input")).getAttribute("value");
-            String fname = webElement.getText();
+            String lastName = webElement.findElement(By.xpath("//td[2]")).getText();
+            String fname = webElement.findElement(By.xpath("//td[3]")).getText();
             Integer id = Integer.parseInt(webElement.findElement(By.tagName("input")).getAttribute("value"));
             ContactInfo contact = new ContactInfo (id, fname, "middleName", lastName, "nickname", "title", "company", "addressText", "homePhone", "mobilePhone", "workPhone", "faxPhone", "website", "day", "month", "year");
             contactsList.add(contact);

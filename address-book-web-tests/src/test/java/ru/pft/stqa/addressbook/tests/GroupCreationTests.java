@@ -20,12 +20,13 @@ public class GroupCreationTests extends TestBase {
         List<GroupInfo> after = app.getGroupsHelper().getGroupList();
         Assert.assertEquals(after.size(), before.size() + 1);
 
-        before.add(group);
+
         int max = 0;
         for (GroupInfo gi : after) {
             if (gi.getId() > max) max = gi.getId();
         }
         group.setId(max);
+        before.add(group);
         Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
         app.getSessionHelper().logOut();
     }

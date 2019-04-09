@@ -2,6 +2,9 @@ package ru.pft.stqa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class NavigationHelper extends HelperBase {
 
@@ -23,7 +26,10 @@ public class NavigationHelper extends HelperBase {
         click(By.linkText("group page"));
     }
 
-    public void gotoFirstContactUpdateForm() {
-        click(By.xpath("(//img[@alt='Edit'])[1]"));
+    public void gotoContactUpdateForm(int index) {
+        List<WebElement> countContacts = wd.findElements(By.xpath("(//img[@alt='Edit'])"));
+        if(countContacts.size() !=0) {
+            countContacts.get(index).click();
+        }
     }
 }
