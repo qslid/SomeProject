@@ -72,7 +72,7 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public List<ContactInfo> getContactList() {
+    public List<ContactInfo> contactList() {
         List<ContactInfo> contactsList = new ArrayList<>();
         List<WebElement> tableElements = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr"));
         tableElements.remove(0); // избавляемся от заголовка в таблице

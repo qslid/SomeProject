@@ -11,25 +11,25 @@ public class GroupModificationTests extends TestBase {
 
     @Test
     public void testModificationGroup() {
-        app.getGroupsHelper().gotoGroupsPage();
-        if (!app.getGroupsHelper().isThereAnyGroup()) {
-            app.getGroupsHelper().createGroup(new GroupInfo("Test", "header", "footer"));
+        app.group().gotoGroupsPage();
+        if (!app.group().isThereAnyGroup()) {
+            app.group().create(new GroupInfo("Test", "header", "footer"));
         }
-        List<GroupInfo> before = app.getGroupsHelper().getGroupList();
-        app.getGroupsHelper().selectGroup(before.size() - 1);
-        app.getGroupsHelper().initGroupModification();
+        List<GroupInfo> before = app.group().getGroupList();
+        app.group().selectGroup(before.size() - 1);
+        app.group().initGroupModification();
 
         GroupInfo group = new GroupInfo(before.get(before.size() - 1).getId(), "nameGroupMODIFIED", null, "footer mod");
 
-        app.getGroupsHelper().fillGroupData(group);
-        app.getGroupsHelper().submitGroupModification();
+        app.group().fillGroupData(group);
+        app.group().submitGroupModification();
         app.getNavigationHelper().gotoGroupPageReturn();
-        List<GroupInfo> after = app.getGroupsHelper().getGroupList();
+        List<GroupInfo> after = app.group().getGroupList();
         Assert.assertEquals(after.size(), before.size());
 
         before.remove(before.size() - 1);
         before.add(group);
         Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
-        app.getSessionHelper().logOut();
+        app.session().logOut();
     }
 }

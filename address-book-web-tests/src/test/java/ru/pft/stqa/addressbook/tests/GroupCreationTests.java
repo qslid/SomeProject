@@ -12,12 +12,12 @@ public class GroupCreationTests extends TestBase {
 
     @Test
     public void addGroupTest() {
-        app.getGroupsHelper().gotoGroupsPage();
-        List<GroupInfo> before = app.getGroupsHelper().getGroupList();
+        app.group().gotoGroupsPage();
+        List<GroupInfo> before = app.group().getGroupList();
         GroupInfo group = new GroupInfo("Test", "header", "footer");
 
-        app.getGroupsHelper().createGroup(group);
-        List<GroupInfo> after = app.getGroupsHelper().getGroupList();
+        app.group().create(group);
+        List<GroupInfo> after = app.group().getGroupList();
         Assert.assertEquals(after.size(), before.size() + 1);
 
 
@@ -28,7 +28,7 @@ public class GroupCreationTests extends TestBase {
         group.setId(max);
         before.add(group);
         Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
-        app.getSessionHelper().logOut();
+        app.session().logOut();
     }
 
 

@@ -12,21 +12,21 @@ public class GroupDeletionTests extends TestBase {
 
     @Test
     public void groupDeletionTest() throws Exception {
-        app.getGroupsHelper().gotoGroupsPage();
-        if (!app.getGroupsHelper().isThereAnyGroup()) {
-            app.getGroupsHelper().createGroup(new GroupInfo("Test", "header", "footer"));
+        app.group().gotoGroupsPage();
+        if (!app.group().isThereAnyGroup()) {
+            app.group().create(new GroupInfo("Test", "header", "footer"));
         }
-        List<GroupInfo> before = app.getGroupsHelper().getGroupList();
-        app.getGroupsHelper().selectGroup(before.size() - 1);
-        app.getGroupsHelper().deleteGroup();
-        assertEquals(app.getGroupsHelper().getTextFromDeletedGroup(), "Group has been removed.\n" +
+        List<GroupInfo> before = app.group().getGroupList();
+        app.group().selectGroup(before.size() - 1);
+        app.group().deleteGroup();
+        assertEquals(app.group().getTextFromDeletedGroup(), "Group has been removed.\n" +
                 "return to the group page");
         app.getNavigationHelper().gotoGroupPageReturn();
-        List<GroupInfo> after = app.getGroupsHelper().getGroupList();
+        List<GroupInfo> after = app.group().getGroupList();
         Assert.assertEquals(after.size(), before.size() - 1);
         before.remove(before.size() - 1);
         Assert.assertEquals(before, after);
-        app.getSessionHelper().logOut();
+        app.session().logOut();
     }
 
 }

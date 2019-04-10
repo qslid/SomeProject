@@ -10,39 +10,38 @@ public class ContactDeletionTests extends TestBase {
     @Test
     public void deleteFirstContactFromUpdateForm() {
         app.getNavigationHelper().gotoHomePage();
-        if (!app.getContactHelper().isThereAnyContact()) {
+        if (!app.contact().isThereAnyContact()) {
             ContactInfo contact = new ContactInfo("firstName", "middleName", "lastName", "nickname", "title", "company", "addressText", "homePhone", "mobilePhone", "workPhone", "faxPhone", "website", "day", "month", "year");
-            app.getContactHelper().createContact(contact);
+            app.contact().createContact(contact);
         }
-        List<ContactInfo> before = app.getContactHelper().getContactList();
+        List<ContactInfo> before = app.contact().contactList();
         app.getNavigationHelper().gotoContactUpdateForm(before.size() - 1);
-        app.getContactHelper().submitDeletion();
+        app.contact().submitDeletion();
         app.getNavigationHelper().gotoHomePage();
-        List<ContactInfo> after = app.getContactHelper().getContactList();
+        List<ContactInfo> after = app.contact().contactList();
         Assert.assertEquals(after.size(), before.size() - 1);
         before.remove(before.size() - 1);
         Assert.assertEquals(before, after);
-        app.getSessionHelper().logOut();
+
     }
 
 
     @Test
     public void deleteFirstContactFromMainPage() {
         app.getNavigationHelper().gotoHomePage();
-        if (!app.getContactHelper().isThereAnyContact()) {
+        if (!app.contact().isThereAnyContact()) {
             ContactInfo contact = new ContactInfo("firstName", "middleName", "lastName", "nickname", "title", "company", "addressText", "homePhone", "mobilePhone", "workPhone", "faxPhone", "website", "day", "month", "year");
-            app.getContactHelper().createContact(contact);
+            app.contact().createContact(contact);
         }
-        List<ContactInfo> before = app.getContactHelper().getContactList();
+        List<ContactInfo> before = app.contact().contactList();
 
-        app.getContactHelper().selectFirstContact();
-        app.getContactHelper().submitDeletionOnMain();
+        app.contact().selectFirstContact();
+        app.contact().submitDeletionOnMain();
         app.getNavigationHelper().gotoHomePage();
-        List<ContactInfo> after = app.getContactHelper().getContactList();
+        List<ContactInfo> after = app.contact().contactList();
         Assert.assertEquals(after.size(), before.size() - 1);
         before.remove(before.size() - 1);
         Assert.assertEquals(before, after);
 
-        app.getSessionHelper().logOut();
     }
 }

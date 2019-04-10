@@ -46,7 +46,7 @@ public class GroupsHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public void createGroup(GroupInfo groupInfo) {
+    public void create(GroupInfo groupInfo) {
         gotoCreationGroupsPage();
         fillGroupData(groupInfo);
         submitCreation();

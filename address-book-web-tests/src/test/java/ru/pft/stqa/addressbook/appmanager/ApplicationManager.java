@@ -50,6 +50,7 @@ public class ApplicationManager {
 
 
     public void stop() {
+        session().logOut();
         wd.quit();
     }
 
@@ -79,16 +80,16 @@ public class ApplicationManager {
     }
 
 
-    public GroupsHelper getGroupsHelper() {
+    public GroupsHelper group() {
         return groupsHelper;
     }
 
 
-    public SessionHelper getSessionHelper() {
+    public SessionHelper session() {
         return sessionHelper;
     }
 
-    public ContactHelper getContactHelper() {
+    public ContactHelper contact() {
         return contactHelper;
     }
 
