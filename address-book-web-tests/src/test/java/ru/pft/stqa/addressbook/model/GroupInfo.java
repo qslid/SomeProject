@@ -3,30 +3,35 @@ package ru.pft.stqa.addressbook.model;
 import java.util.Objects;
 
 public class GroupInfo {
-    private final String nameGroup;
-    private final String header;
-    private final String footer;
-    private int id;
-    public GroupInfo(String nameGroup, String header, String footer) {
-        this.id = 0;
-        this.nameGroup = nameGroup;
-        this.header = header;
-        this.footer = footer;
-    }
+    private String nameGroup;
+    private String header;
+    private String footer;
+    private int id = Integer.MAX_VALUE;
 
-    public GroupInfo(Integer id, String nameGroup, String header, String footer) {
-        this.id = id;
-        this.nameGroup = nameGroup;
-        this.header = header;
-        this.footer = footer;
-    }
+
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public GroupInfo withId(int id) {
         this.id = id;
+        return this;
+    }
+
+    public GroupInfo withName(String nameGroup) {
+        this.nameGroup = nameGroup;
+        return this;
+    }
+
+    public GroupInfo withHeader(String header) {
+        this.header = header;
+        return this;
+    }
+
+    public GroupInfo withFooter(String footer) {
+        this.footer = footer;
+        return this;
     }
 
     public String getNameGroup() {

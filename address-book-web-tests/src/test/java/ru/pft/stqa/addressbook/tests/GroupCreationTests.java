@@ -14,7 +14,7 @@ public class GroupCreationTests extends TestBase {
     public void addGroupTest() {
         app.group().gotoGroupsPage();
         List<GroupInfo> before = app.group().getGroupList();
-        GroupInfo group = new GroupInfo("Test", "header", "footer");
+        GroupInfo group = new GroupInfo().withName("Test1");
 
         app.group().create(group);
         List<GroupInfo> after = app.group().getGroupList();
@@ -25,7 +25,7 @@ public class GroupCreationTests extends TestBase {
         for (GroupInfo gi : after) {
             if (gi.getId() > max) max = gi.getId();
         }
-        group.setId(max);
+        group.withId(max);
         before.add(group);
         Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
         app.session().logOut();

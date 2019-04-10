@@ -14,14 +14,10 @@ public class GroupDeletionTests extends TestBase {
     public void groupDeletionTest() throws Exception {
         app.group().gotoGroupsPage();
         if (!app.group().isThereAnyGroup()) {
-            app.group().create(new GroupInfo("Test", "header", "footer"));
+            app.group().create(new GroupInfo().withName("Name1").withFooter("Footer1").withHeader("Header2"));
         }
         List<GroupInfo> before = app.group().getGroupList();
-        app.group().selectGroup(before.size() - 1);
-        app.group().deleteGroup();
-        assertEquals(app.group().getTextFromDeletedGroup(), "Group has been removed.\n" +
-                "return to the group page");
-        app.getNavigationHelper().gotoGroupPageReturn();
+        delete(before);
         List<GroupInfo> after = app.group().getGroupList();
         Assert.assertEquals(after.size(), before.size() - 1);
         before.remove(before.size() - 1);
