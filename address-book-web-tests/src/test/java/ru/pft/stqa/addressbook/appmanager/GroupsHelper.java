@@ -5,8 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.pft.stqa.addressbook.model.GroupInfo;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static org.testng.Assert.assertEquals;
 
 public class GroupsHelper extends HelperBase {
 
@@ -32,6 +35,17 @@ public class GroupsHelper extends HelperBase {
 
     public void selectGroup(int index) {
         wd.findElements(By.name("selected[]")).get(index).click();
+    }
+
+    public void selectGroupByID(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    }
+
+    public void modify(GroupInfo group) {
+        selectGroupByID(group.getId());
+        initGroupModification();
+        fillGroupData(group);
+        submitGroupModification();
     }
 
     public void initGroupModification() {
@@ -65,8 +79,9 @@ public class GroupsHelper extends HelperBase {
         return wd.findElements(By.name("selected[]")).size();
     }
 
-    public List<GroupInfo> getGroupList() {
-        List<GroupInfo> groups = new ArrayList<>();
+
+    public Set<GroupInfo> all() {
+        Set<GroupInfo> groups = new HashSet<>();
         List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
         for (WebElement webElement : elements) {
             String parsedName = webElement.getText();
@@ -78,7 +93,21 @@ public class GroupsHelper extends HelperBase {
         return groups;
     }
 
+    public void delete(int index) {
+        selectGroup(index);
+        deleteGroup();
+        assertEquals(getTextFromDeletedGroup(), "Group has been removed.\n" +
+                "return to the group page");
+    }
+
+    public void delete(GroupInfo group) {
+        selectGroupByID(group.getId());
+        deleteGroup();
+    }
+
     public String getTextFromDeletedGroup() {
         return wd.findElement(By.cssSelector("div.msgbox")).getText();
     }
+
+
 }

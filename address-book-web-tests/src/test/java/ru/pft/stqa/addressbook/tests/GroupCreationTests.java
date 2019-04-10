@@ -5,30 +5,25 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.pft.stqa.addressbook.model.GroupInfo;
 
-import java.util.HashSet;
-import java.util.List;
+import java.util.Set;
 
 public class GroupCreationTests extends TestBase {
 
     @Test
     public void addGroupTest() {
         app.group().gotoGroupsPage();
-        List<GroupInfo> before = app.group().getGroupList();
+        Set<GroupInfo> before = app.group().all();
         GroupInfo group = new GroupInfo().withName("Test1");
 
         app.group().create(group);
-        List<GroupInfo> after = app.group().getGroupList();
+        Set<GroupInfo> after = app.group().all();
         Assert.assertEquals(after.size(), before.size() + 1);
 
-
-        int max = 0;
-        for (GroupInfo gi : after) {
-            if (gi.getId() > max) max = gi.getId();
-        }
-        group.withId(max);
+        group.withId(
+                after.stream().mapToInt((g) -> g.getId()).max().getAsInt()
+        );
         before.add(group);
-        Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
-        app.session().logOut();
+        Assert.assertEquals(before, after);
     }
 
 

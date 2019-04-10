@@ -28,7 +28,7 @@ public class NavigationHelper extends HelperBase {
 
     public void gotoContactUpdateForm(int index) {
         List<WebElement> countContacts = wd.findElements(By.xpath("(//img[@alt='Edit'])"));
-        if(countContacts.size() !=0) {
+        if (countContacts.size() != 0) {
             countContacts.get(index).click();
         }
     }

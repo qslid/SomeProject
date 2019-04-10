@@ -9,7 +9,6 @@ public class GroupInfo {
     private int id = Integer.MAX_VALUE;
 
 
-
     public int getId() {
         return id;
     }
@@ -47,6 +46,14 @@ public class GroupInfo {
     }
 
     @Override
+    public String toString() {
+        return "GroupInfo{" +
+                "id=" + id +
+                ", nameGroup='" + nameGroup + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -57,15 +64,6 @@ public class GroupInfo {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nameGroup);
+        return Objects.hash(nameGroup, id);
     }
-
-    @Override
-    public String toString() {
-        return "GroupInfo{" +
-                "id=" + id +
-                ", nameGroup='" + nameGroup + '\'' +
-                '}';
-    }
-
 }

@@ -3,7 +3,6 @@ package ru.pft.stqa.addressbook.model;
 import java.util.Objects;
 
 public class ContactInfo {
-    private int id;
     private final String firstName;
     private final String middleName;
     private final String lastName;
@@ -19,6 +18,7 @@ public class ContactInfo {
     private final String day;
     private final String month;
     private final String year;
+    private int id;
 
 
     public ContactInfo(String firstName, String middleName, String lastName, String nickname, String title, String company, String addressText, String homePhone, String mobilePhone, String workPhone, String faxPhone, String website, String day, String month, String year) {
