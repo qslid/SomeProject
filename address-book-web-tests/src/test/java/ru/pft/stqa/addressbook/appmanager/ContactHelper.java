@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.pft.stqa.addressbook.model.ContactInfo;
+import ru.pft.stqa.addressbook.model.Contacts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,16 +27,6 @@ public class ContactHelper extends HelperBase {
         type(contactInfo.getFirstName(), By.name("firstname"));
         type(contactInfo.getMiddleName(), By.name("middlename"));
         type(contactInfo.getLastName(), By.name("lastname"));
-        type(contactInfo.getNickname(), By.name("nickname"));
-        type(contactInfo.getTitle(), By.name("title"));
-        type(contactInfo.getCompany(), By.name("company"));
-        type(contactInfo.getAddressText(), By.name("address"));
-        type(contactInfo.getHomePhone(), By.name("home"));
-        type(contactInfo.getMobilePhone(), By.name("mobile"));
-        type(contactInfo.getWorkPhone(), By.name("work"));
-        type(contactInfo.getFaxPhone(), By.name("fax"));
-        type(contactInfo.getWebsite(), By.name("homepage"));
-        type(contactInfo.getYear(), By.name("byear"));
         click(By.xpath("//body"));
     }
 
@@ -48,9 +39,11 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("(//input[@name='update'])[3]"));
     }
 
-    public void selectFirstContact() {
+    public void selectContactByID() {
         click(By.name("selected[]"));
     }
+
+
 
     public void submitDeletionOnMain() {
         click(By.xpath("//input[@value='Delete']"));
@@ -61,7 +54,7 @@ public class ContactHelper extends HelperBase {
         click(By.linkText("home"));
     }
 
-    public void createContact(ContactInfo contactInfo) {
+    public void doCreateContact(ContactInfo contactInfo) {
         gotoNewContactForm();
         fillContactForm(contactInfo);
         submitContactForm();
@@ -72,17 +65,21 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public List<ContactInfo> contactList() {
-        List<ContactInfo> contactsList = new ArrayList<>();
+    public Contacts list() {
+        Contacts contactsList = new Contacts();
         List<WebElement> tableElements = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr"));
         tableElements.remove(0); // избавляемся от заголовка в таблице
         for (WebElement webElement : tableElements) {
             String lastName = webElement.findElement(By.xpath("//td[2]")).getText();
             String fname = webElement.findElement(By.xpath("//td[3]")).getText();
             Integer id = Integer.parseInt(webElement.findElement(By.tagName("input")).getAttribute("value"));
-            ContactInfo contact = new ContactInfo(id, fname, "middleName", lastName, "nickname", "title", "company", "addressText", "homePhone", "mobilePhone", "workPhone", "faxPhone", "website", "day", "month", "year");
+            ContactInfo contact = new ContactInfo().withFirstName(fname).withLastName(lastName).withId(id);
             contactsList.add(contact);
         }
         return contactsList;
+    }
+
+    public void selectContactByID(int id) {
+        wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     }
 }

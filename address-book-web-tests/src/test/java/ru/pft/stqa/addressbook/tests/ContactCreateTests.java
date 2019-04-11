@@ -3,32 +3,30 @@ package ru.pft.stqa.addressbook.tests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.pft.stqa.addressbook.model.ContactInfo;
+import ru.pft.stqa.addressbook.model.Contacts;
 
 import java.util.HashSet;
-import java.util.List;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.*;
 
 public class ContactCreateTests extends TestBase {
 
 
     @Test
     public void createNewContactTest() {
-        List<ContactInfo> before = app.contact().contactList();
+        Contacts before = app.contact().list();
 
-        ContactInfo contact = new ContactInfo("firstName", "middleName", "lastName", "nickname", "title", "company", "addressText", "homePhone", "mobilePhone", "workPhone", "faxPhone", "website", "day", "month", "year");
+        ContactInfo contact = new ContactInfo().withFirstName("FirstName").withLastName("LastName");
 
-        app.contact().createContact(contact);
-        List<ContactInfo> after = app.contact().contactList();
-        Assert.assertEquals(after.size(), before.size() + 1);
+        app.contact().doCreateContact(contact);
+        Contacts after = app.contact().list();
+        assertThat(after.size(), equalTo(before.size() + 1));
+        assertThat(after, equalTo(before.withAdded(contact.withId(
+                after.stream().mapToInt((g) -> g.getId()).max().getAsInt()
+        ))));
 
-
-        int max = 0;
-        for (ContactInfo ci : after) {
-            if (ci.getId() > max) max = ci.getId();
-        }
-        contact.setId(max);
-        before.add(contact);
-        Assert.assertEquals(new HashSet<>(before), new HashSet<>(after));
-        app.session().logOut();
     }
 
 }

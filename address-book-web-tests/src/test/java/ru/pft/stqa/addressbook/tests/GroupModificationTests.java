@@ -15,7 +15,7 @@ public class GroupModificationTests extends TestBase {
     @BeforeMethod
     public void ensurePreconditions() {
         app.group().gotoGroupsPage();
-        if (!app.group().isThereAnyGroup()) {
+        if (app.group().all().size()==0) {
             app.group().create(new GroupInfo().withName("Name1").withFooter("Footer1").withHeader("Header2"));
         }
     }
