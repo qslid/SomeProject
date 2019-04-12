@@ -1,15 +1,11 @@
 package ru.pft.stqa.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.pft.stqa.addressbook.model.ContactInfo;
 import ru.pft.stqa.addressbook.model.Contacts;
 
-import java.util.HashSet;
-
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.testng.Assert.*;
 
 public class ContactCreateTests extends TestBase {
 

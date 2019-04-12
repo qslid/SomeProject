@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import ru.pft.stqa.addressbook.model.ContactInfo;
 import ru.pft.stqa.addressbook.model.Contacts;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -70,8 +69,8 @@ public class ContactHelper extends HelperBase {
         List<WebElement> tableElements = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr"));
         tableElements.remove(0); // избавляемся от заголовка в таблице
         for (WebElement webElement : tableElements) {
-            String lastName = webElement.findElement(By.xpath("//td[2]")).getText();
-            String fname = webElement.findElement(By.xpath("//td[3]")).getText();
+            String lastName = webElement.findElement(By.xpath(".//td[2]")).getText();
+            String fname = webElement.findElement(By.xpath(".//td[3]")).getText();
             Integer id = Integer.parseInt(webElement.findElement(By.tagName("input")).getAttribute("value"));
             ContactInfo contact = new ContactInfo().withFirstName(fname).withLastName(lastName).withId(id);
             contactsList.add(contact);
