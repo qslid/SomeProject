@@ -25,7 +25,7 @@ public class ContactDeletionTests extends TestBase {
     public void deleteFirstContactFromUpdateForm() {
         Contacts before = app.contact().list();
         ContactInfo deletedContact = before.iterator().next();
-        app.getNavigationHelper().gotoContactUpdateForm(deletedContact.getId());
+        app.contact().gotoContactUpdateForm(deletedContact.getId());
         app.contact().submitDeletion();
         app.getNavigationHelper().gotoHomePage();
         Contacts after = app.contact().list();

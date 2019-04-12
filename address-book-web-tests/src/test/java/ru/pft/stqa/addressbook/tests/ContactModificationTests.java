@@ -25,7 +25,7 @@ public class ContactModificationTests extends TestBase {
     public void contactModificationTest() {
         Contacts before = app.contact().list();
         ContactInfo modifiedContact = before.iterator().next();
-        app.getNavigationHelper().gotoContactUpdateForm(modifiedContact.getId());
+        app.contact().gotoContactUpdateForm(modifiedContact.getId());
 
         ContactInfo contact = new ContactInfo().withFirstName("FirstName").withLastName("LastName");
         app.contact().fillContactForm(contact);
