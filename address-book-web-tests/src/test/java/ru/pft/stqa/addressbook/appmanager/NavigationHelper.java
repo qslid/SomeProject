@@ -26,10 +26,10 @@ public class NavigationHelper extends HelperBase {
         click(By.linkText("group page"));
     }
 
-    public void gotoContactUpdateForm(int index) {
+    public void gotoContactUpdateForm(int id) {
         List<WebElement> countContacts = wd.findElements(By.xpath("(//img[@alt='Edit'])"));
         if (countContacts.size() != 0) {
-            countContacts.get(index).click();
+            click(By.xpath("//a[@href='edit.php?id=" + id + "']"));
         }
     }
 }
